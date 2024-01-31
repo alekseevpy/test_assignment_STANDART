@@ -47,7 +47,7 @@ Python 3.11, Django 4, Django Rest Framework 3.14, PostgreSQL.
 6. Запустите локальный сервер:
 
     ```bash
-    $ python seed_runner.py
+    $ python manage.py runserver
     ```
 
 Проект будет доступен по адресу: http://127.0.0.1:8000/
