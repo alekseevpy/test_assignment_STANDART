@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Заявки на оплату{% endblock title %}
+{% block content %}
+<style>
+  #searchInput {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+</style>
+<main class="container">
+  <div class="p-4 p-md-5 mb-4 text-white rounded" style="background-color: #4b7777c7;">
+  </div>
+  <div class="row g-7">
+    <div class="col-md-8">
+      <h1>Реквизиты</h1>
+      {% include "includes/switcher.html" %}
+      <input type="text" id="searchInput" placeholder="Поиск по реквизитам...">
+      <div id="detailsContainer">
+        {% for payment_detail in details %}
+          <article class="blog-post" style="border-radius: 20px; overflow: hidden; box-shadow: 5px 5px 10px #000; margin-top: 25px;">
+            {% include "details/detail_content.html" %}
+            <br>
+          </article>
+        {% endfor %}
+      </div>
+      <br>
+      <nav class="blog-pagination" aria-label="Pagination">
+        <a class="btn btn-outline-primary" href="#" style="background-color: #4b7777c7; color: white;">Наверх</a>
+      </nav>
+      {% comment %} {% include "includes/paginator.html" %} {% endcomment %}
+    </div>
+  </div>
+</main>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $("#searchInput").on("input", function() {
+      var query = $(this).val();
+      performSearch(query);
+    });
+
+    function performSearch(query, page=1) {
+      $.ajax({
+        url: "{% url 'invoices:search_details' %}",
+        type: "GET",
+        data: { q: query, page: page },
+        success: function(data) {
+        if (data.trim() === "") {
+          $("#detailsContainer").html("<p>Результатов не найдено</p>");
+        } else {
+          $("#detailsContainer").html(data);
+        }
+      },
+      error: function(error) {
+        console.log(error);
+      }
+    });
+  }
+  performSearch();
+});
+</script>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}
+    Информация о заявке
+{% endblock title %}
+{% block content %}
+<main class="container">
+  <div class="row justify-content-center">
+    <aside class="col-12 col-md-6">
+      <ul class="list-group list-group-flush text-center">
+        <li class="list-group-item">
+          <h3 class="mb-4">Номер заявки: {{ invoice.id }}</h3>
+        </li>
+        <li class="list-group-item">
+          <h4 class="mb-4">Сумма: {{ invoice.amount }}</h4>
+        </li>
+        <li class="list-group-item">
+          <h4 class="mb-4">Cтатус: {{ invoice.status }}</h4>
+        </li>
+
+        <li class="list-group-item">
+          <h4 class="mb-4">Тип оплаты: {{ invoice.payment_detail.payment_type }}</h4>
+        </li>
+        <li class="list-group-item">
+          <h4 class="mb-4">Тип карты/счёта: {{ invoice.payment_detail.account_or_card_type }}</h4>
+        </li>
+        <li class="list-group-item">
+          <h4 class="mb-4">Заявитель: {{ invoice.payment_detail.owner_name }}</h4>
+        </li>
+        <li class="list-group-item">
+          <h4 class="mb-4">Номер телефона: {{ invoice.payment_detail.phone_number }}</h4>
+        </li>
+        <li class="list-group-item">
+          <h4>Лимит: {{ invoice.payment_detail.limit_amount }}</h4>
+        </li>
+      </ul>
+    </aside>
+  </div>
+</main>
+{% endblock %}

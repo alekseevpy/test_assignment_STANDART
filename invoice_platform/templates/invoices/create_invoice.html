@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}
+    Новая заявка
+{% endblock %}
+{% block content %}
+{% load user_filters %}
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 p-5">
+      <div class="card">
+        <div class="card-header" style="background-color: #4b7777c7; color: white;">
+          Новая заявка
+        </div>
+        <div class="card-body">
+          <form method="post" enctype="multipart/form-data" action="{% url "invoices:create_invoice" %}">
+            {% csrf_token %}
+            {# Выводим поля из формы InvoiceForm #}
+            {% for field in invoice_form %}
+                <div class="form-group row my-3 p-3">
+                    <label>{{ field.label }}</label>
+                    {{ field|addclass:"form-control" }}
+                </div>
+            {% endfor %}
+            {# Выводим поля из формы PaymentDetailForm #}
+            {% for field in payment_detail_form %}
+                <div class="form-group row my-3 p-3">
+                    <label>{{ field.label }}</label>
+                    {{ field|addclass:"form-control" }}
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary" style="background-color: #4b7777c7; border-color: #4b7777c7;">
+                Создать
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+<div class="card glass play" style="border-radius: 20px; margin-bottom: 20px;">
+  <div class="card-footer glass" style="background: linear-gradient(0deg, rgba(240, 244, 254, 0.63), rgba(240, 244, 254, 0.63)); border-radius: 20px;">
+    <small class="d-md-flex justify-content-md-end">
+      Номер реквизитов: {{ payment_detail.id }}
+    </small>
+  </div>
+  <div class="card-body" style="background: linear-gradient(0deg, rgba(240, 244, 254, 0.63), rgba(240, 244, 254, 0.63)); border-radius: 20px;">
+    <p class="card-text merri" style="font-size: 15px;">
+      Тип платежа: {{ payment_detail.payment_type }}<br>
+      Тип карты/счёта: {{ payment_detail.account_or_card_type }}<br>
+      ФИО: {{ payment_detail.owner_name }}<br>
+      Номер телефона: {{ payment_detail.phone_number }}<br>
+      Лимит: {{ payment_detail.limit_amount }}  
+    </p> 
+  </div> 
+</div>

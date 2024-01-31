@@ -1,0 +1,22 @@
+<div class="card glass play" style="border-radius: 20px; margin-bottom: 20px;">
+  <div class="card-footer glass" style="background: linear-gradient(0deg, rgba(240, 244, 254, 0.63), rgba(240, 244, 254, 0.63)); border-radius: 20px;">
+    <small class="d-md-flex justify-content-md-end">
+      Дата публикации: {{ invoice.pub_date|date:"d E Y" }}
+    </small>
+  </div>
+  <div class="card-body" style="background: linear-gradient(0deg, rgba(240, 244, 254, 0.63), rgba(240, 244, 254, 0.63)); border-radius: 20px;">
+    <p class="card-text merri" style="font-size: 15px;">
+      Номер заяки: {{ invoice.id }}<br>
+      Сумма: {{ invoice.amount }}<br>
+      Статус: {{ invoice.status }}
+    </p>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      {% if invoice.pk %}   
+      <a href="{% url 'invoices:detail_invoice' invoice.id %}" class="iksweb btn-sm">
+        <i class="bi bi-info-circle"></i>
+        Подробная информация 
+      </a>
+      {% endif %} 
+    </div> 
+  </div> 
+</div>

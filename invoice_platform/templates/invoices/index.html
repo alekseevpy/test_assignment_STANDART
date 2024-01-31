@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load cache %}
+{% load static %}
+{% block title %}Заявки на оплату{% endblock title %}
+{% block content %}
+<main class="container">
+  <div class="p-4 p-md-5 mb-4 text-white rounded" style="background-color: #4b7777c7;">
+  </div>
+  <div class="row g-7">
+    <div class="col-md-8">
+      <h1>Заявки на оплату</h1>
+      {% include "includes/switcher.html" %}
+      {% for invoice in page_obj %}
+        <article class="blog-post" style="border-radius: 20px; overflow: hidden; box-shadow: 5px 5px 10px #000; margin-top: 25px;">
+          {% include "invoices/invoice_content.html" %}
+          <br>
+        </article>
+      {% endfor %}
+      <br>
+      <nav class="blog-pagination" aria-label="Pagination">
+        <a class="btn btn-outline-primary" href="#" style="background-color: #4b7777c7; color: white;">Наверх</a>
+      </nav>
+      {% include "includes/paginator.html" %}
+    </div>
+  </div>
+</main>
+{% endblock %}
